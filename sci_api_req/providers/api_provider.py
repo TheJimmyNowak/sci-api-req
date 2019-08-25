@@ -28,9 +28,16 @@ class ApiProvider(object):
                 for i in parameters:
                     param_string += i + "=" + str(parameters[i]) + "&"
 
-                response = requests\
-                    .get("{}{}?{}api_key={}".format(self.api_url,  endpoint, param_string, self.api_key))
-                response = response.json()
+                url = "{}{}?{}api_key={}".format(self.api_url, endpoint, param_string, self.api_key)
+                response = requests.get(url)
+
+                if response.content:
+                    response = response.json()
+                else:
+                    print("WARNING!!! Api returned empty response. That could cause exception")
+
                 return f(response=response)
+
             return wrapper()
+
         return inner_function
