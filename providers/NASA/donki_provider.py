@@ -14,7 +14,7 @@ class DONKIProvider(ApiProvider):
     search functionality to support anomaly resolution and space science research,
     intelligent linkages, relationships, cause-and-effects between space weather
     activities and comprehensive webservice API access to information stored in DONKI.
-    For more information see: https://api.nasa.gov/api.html#DONKI
+    For more information see: https://api.nasa.gov/api.html#DONKI. Requires NASA api key
     """
 
     def __init__(self):
