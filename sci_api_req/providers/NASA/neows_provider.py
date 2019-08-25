@@ -1,5 +1,5 @@
-from requesters.api_provider import ApiProvider
-import config
+from ..api_provider import ApiProvider
+from sci_api_req import config
 import datetime
 
 

@@ -1,7 +1,7 @@
 from datetime import date
 
-import config
-from providers.api_provider import ApiProvider
+from sci_api_req import config
+from ..api_provider import ApiProvider
 
 
 class APODProvider(ApiProvider):
