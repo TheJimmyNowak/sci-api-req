@@ -21,9 +21,9 @@ class NeoWsRequester(ApiRequester):
     """Retrieve a list of Asteroids based on their closest approach date to Earth."""
     def feed(self, start_date: datetime.date, end_date: datetime.date, detailed=True) -> dict:
         @self._get_request('feed',
-                           start_date=str(start_date),
-                           end_date=str(end_date),
-                           detailed=str(detailed))
+                           start_date=start_date,
+                           end_date=end_date,
+                           detailed=detailed)
         def inner(response):
             return response
 
@@ -31,7 +31,7 @@ class NeoWsRequester(ApiRequester):
 
     """Find Near Earth Objects for today"""
     def feed(self, detailed=True) -> dict:
-        @self._get_request('feed/today', detailed=str(detailed))
+        @self._get_request('feed/today', detailed=detailed)
         def inner(response):
             return response
 

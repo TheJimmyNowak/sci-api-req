@@ -26,7 +26,7 @@ class ApiRequester(object):
             def wrapper():
                 param_string = ""
                 for i in parameters:
-                    param_string += i + "=" + parameters[i] + "&"
+                    param_string += i + "=" + str(parameters[i]) + "&"
 
                 response = requests\
                     .get("{}{}?{}api_key={}".format(self.api_url,  endpoint, param_string, self.api_key))
