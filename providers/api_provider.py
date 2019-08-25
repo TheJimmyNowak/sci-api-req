@@ -3,7 +3,7 @@ from functools import wraps
 import requests
 
 
-class ApiRequester(object):
+class ApiProvider(object):
     """Parent class for api requesters"""
     __slots__ = ['_api_url']
 

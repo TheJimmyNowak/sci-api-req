@@ -1,10 +1,10 @@
 import datetime
 
 import config
-from requesters.api_requester import ApiRequester
+from requesters.api_provider import ApiProvider
 
 
-class DONKIRequester(ApiRequester):
+class DONKIProvider(ApiProvider):
     """
     The Space Weather Database Of Notifications, Knowledge, Information (DONKI) is
     a comprehensive on-line tool for space weather forecasters, scientists, and the
@@ -18,7 +18,7 @@ class DONKIRequester(ApiRequester):
     """
 
     def __init__(self):
-        super(ApiRequester).__init__()
+        super(ApiProvider).__init__()
         self._api_url = "https://api.nasa.gov/DONKI/"
 
     @property

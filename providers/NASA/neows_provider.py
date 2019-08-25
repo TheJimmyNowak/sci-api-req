@@ -1,9 +1,9 @@
-from requesters.api_requester import ApiRequester
+from requesters.api_provider import ApiProvider
 import config
 import datetime
 
 
-class NeoWsRequester(ApiRequester):
+class NeoWsProvider(ApiProvider):
     """
     You can use NeoWs(Near Earth Object Web Service) to search for Asteroids based on
     their closest approach date to Earth, lookup a specific Asteroid with its NASA JPL
@@ -11,7 +11,7 @@ class NeoWsRequester(ApiRequester):
     information check that https://api.nasa.gov/api.html#NeoWS
     """
     def __init__(self):
-        super(ApiRequester).__init__()
+        super(ApiProvider).__init__()
         self._api_url = "https://api.nasa.gov/neo/rest/v1/"
 
     @property
