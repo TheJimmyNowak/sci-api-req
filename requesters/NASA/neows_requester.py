@@ -1,5 +1,5 @@
 from requesters.api_requester import ApiRequester
-from config import Config
+import config
 import datetime
 
 
@@ -16,14 +16,14 @@ class NeoWsRequester(ApiRequester):
 
     @property
     def api_key(self) -> str:
-        return Config().api_keys['NASA']
+        return config.get_api_keys('NASA')
 
     """Retrieve a list of Asteroids based on their closest approach date to Earth."""
     def feed(self, start_date: datetime.date, end_date: datetime.date, detailed=True) -> dict:
         @self._get_request('feed',
                            start_date=str(start_date),
                            end_date=str(end_date),
-                           detailed=detailed)
+                           detailed=str(detailed))
         def inner(response):
             return response
 
@@ -31,7 +31,7 @@ class NeoWsRequester(ApiRequester):
 
     """Find Near Earth Objects for today"""
     def feed(self, detailed=True) -> dict:
-        @self._get_request('feed/today', detailed=detailed)
+        @self._get_request('feed/today', detailed=str(detailed))
         def inner(response):
             return response
 
@@ -61,7 +61,7 @@ class NeoWsRequester(ApiRequester):
         return inner
 
     """Retrieve Sentry (Impact Risk) Near Earth Objectby ID"""
-    def sentry(self, id) -> dict:
+    def sentry_by_id(self, id) -> dict:
         @self._get_request('neo/sentry/{}'.format(id))
         def inner(response):
             return response

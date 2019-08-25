@@ -1,17 +1,14 @@
-class Config:
-    __slots__ = []
+_api_keys = {
+    "NASA": ""
+}
 
-    @property
-    def api_keys(self) -> dict:
-        return {
-            'NASA': ""
-        }
 
-    @api_keys.setter
-    def api_keys(self, api_and_key: tuple) -> None:
-        if len(api_and_key) > 2:
-            raise Exception("Too many args")
+def set_api_keys(api_and_key: tuple) -> None:
+    if len(api_and_key) > 2:
+        raise Exception("Too many args")
+    api, key = api_and_key
+    _api_keys[api] = key
 
-        api, key = api_and_key
 
-        self.api_keys[api] = key
+def get_api_keys(k) -> str:
+    return _api_keys[k]
