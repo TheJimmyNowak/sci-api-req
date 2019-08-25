@@ -1,7 +1,7 @@
 import datetime
 
-import config
-from requesters.api_provider import ApiProvider
+from sci_api_req import config
+from ..api_provider import ApiProvider
 
 
 class DONKIProvider(ApiProvider):
