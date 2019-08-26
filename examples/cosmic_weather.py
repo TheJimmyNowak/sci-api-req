@@ -24,7 +24,8 @@ print("It's the last one notification:\n"
       "{}".format(notifications[0]['messageType'], notifications[0]['messageBody']))
 
 # Get near close objects for today
-neo_feed = NeoWs_provider.feed()
+neo_feed = NeoWs_provider.feed(detailed=False)
+
 print("It's near earth asteroid id's:")
 for i in neo_feed['near_earth_objects'][str(date.today())]:
     print(i['id'])
