@@ -120,7 +120,9 @@ class DONKIProvider(ApiProvider):
 
         return inner
 
-    def notifications(self, start_date:datetime.date, end_date:datetime.date, type="all"):
+    def notifications(self, start_date: datetime.date, end_date: datetime.date, type="all"):
         @self._get_request('notifications', startDate=start_date, endDate=end_date, type=type)
         def inner(response):
             return response
+
+        return inner
