@@ -6,6 +6,8 @@ from sci_api_req.providers.NASA.neows_provider import NeoWsProvider
 
 
 # Set NASA API key
+from sci_api_req.providers.openaq_provider import OpenaqProvider
+
 config.set_api_keys(('NASA', 'CeJOODBdDRDhAbcsB4H89tSIJFkUD0hCkQu760nf'))
 
 # Initialize providers
@@ -30,3 +32,5 @@ print("It's near earth asteroid id's:")
 for i in neo_feed['near_earth_objects'][str(date.today())]:
     print(i['id'])
     print("Does it hazardous?: {}\n".format(i['is_potentially_hazardous_asteroid']))
+
+OpenaqProvider().cities()

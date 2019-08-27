@@ -24,13 +24,14 @@ class ApiProvider(object):
         def inner_function(f):
             @wraps(f)
             def wrapper():
-                param_string = ""
+                param_string = "?"
                 for i in parameters:
                     param_string += i + "=" + str(parameters[i]) + "&"
 
-                url = "{}{}?{}api_key={}".format(self.api_url, endpoint, param_string, self.api_key)
+                param_string = param_string[:-1]
+                url = "{}{}{}".format(self.api_url, endpoint, param_string)
                 response = requests.get(url)
-
+                print(url)
                 if response.content:
                     response = response.json()
                 else:
