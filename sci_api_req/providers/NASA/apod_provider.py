@@ -18,7 +18,7 @@ class APODProvider(ApiProvider):
         return config.get_api_keys('NASA')
 
     def get_apod(self, date=date.today(), hd=False):
-        @self._get_request('', date=date, hd=hd)
+        @self._get_request('api_key={}'.format(self.api_key), date=date, hd=hd)
         def inner(response):
             return response
 

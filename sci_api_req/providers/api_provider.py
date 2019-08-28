@@ -5,31 +5,21 @@ import requests
 
 class ApiProvider(object):
     """Parent class for api requesters"""
-    __slots__ = ['_api_url']
+    __slots__ = ['_api_url', '_api_key']
 
     def __init__(self):
         self._api_url = None
-
-    @property
-    def api_url(self) -> str:
-        return self._api_url
-
-    """Access key to api"""
-    @property
-    def api_key(self) -> str:
-        return "Hasn\'t set yet"
+        self._api_key = None
 
     """Make GET request to api and inject response to response kwarg"""
     def _get_request(self, endpoint: str, **parameters):
         def inner_function(f):
             @wraps(f)
             def wrapper():
-                param_string = ""
-                for i in parameters:
-                    param_string += i + "=" + str(parameters[i]) + "&"
+                if self._api_key:
+                    parameters['api_key'] = self._api_key
 
-                url = "{}{}?{}api_key={}".format(self.api_url, endpoint, param_string, self.api_key)
-                response = requests.get(url)
+                response = requests.get(self._api_url + endpoint, params=parameters)
 
                 if response.content:
                     response = response.json()

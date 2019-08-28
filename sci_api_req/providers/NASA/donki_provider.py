@@ -20,15 +20,12 @@ class DONKIProvider(ApiProvider):
     def __init__(self):
         super(ApiProvider).__init__()
         self._api_url = "https://api.nasa.gov/DONKI/"
-
-    @property
-    def api_key(self) -> str:
-        return config.get_api_keys('NASA')
+        self._api_key = config.get_api_keys('NASA')
 
     def coronal_mass_ejection(self, start_date=datetime.date.today() - datetime.timedelta(30),
                               end_date=datetime.date.today()):
         @self._get_request(
-            'CME',
+            'CME?api_key={}',
             startDate=start_date,
             endDate=end_date)
         def inner(response):
@@ -57,7 +54,8 @@ class DONKIProvider(ApiProvider):
 
     def geomagnetic_storm(self, start_date=datetime.date.today() - datetime.timedelta(30),
                           end_date=datetime.date.today()):
-        @self._get_request('GST', startDate=start_date, endDate=end_date)
+        @self._get_request('GST',
+                           startDate=start_date, endDate=end_date)
         def inner(response):
             return response
 
@@ -65,8 +63,9 @@ class DONKIProvider(ApiProvider):
 
     def interplanetary_shock(self, start_date=datetime.date.today() - datetime.timedelta(30),
                              end_date=datetime.date.today(), location="ALL", catalog="ALL"):
-        @self._get_request('IPS', startDate=start_date, endDate=end_date, location=location,
-                           catalog=catalog)
+        @self._get_request('IPS',
+                           startDate=start_date, endDate=end_date,
+                           location=location, catalog=catalog)
         def inner(response):
             return response
 
@@ -74,7 +73,8 @@ class DONKIProvider(ApiProvider):
 
     def solar_flare(self, start_date=datetime.date.today() - datetime.timedelta(30),
                              end_date=datetime.date.today()):
-        @self._get_request('FLR', startDate=start_date, endDate=end_date)
+        @self._get_request('FLR',
+                           startDate=start_date, endDate=end_date)
         def inner(response):
             return response
 
@@ -82,7 +82,8 @@ class DONKIProvider(ApiProvider):
 
     def solar_energetic_particle(self, start_date=datetime.date.today() - datetime.timedelta(30),
                              end_date=datetime.date.today()):
-        @self._get_request('SEP', startDate=start_date, endDate=end_date)
+        @self._get_request('SEP',
+                           startDate=start_date, endDate=end_date)
         def inner(response):
             return response
 
@@ -90,15 +91,16 @@ class DONKIProvider(ApiProvider):
 
     def magnetopause_crossing(self, start_date=datetime.date.today() - datetime.timedelta(30),
                              end_date=datetime.date.today()):
-        @self._get_request('MPC', startDate=start_date, endDate=end_date)
+        @self._get_request('MPC',
+                           startDate=start_date, endDate=end_date)
         def inner(response):
             return response
 
         return inner
 
-    def radiation_belt_enhancment(self, start_date=datetime.date.today() - datetime.timedelta(30),
-                             end_date=datetime.date.today()):
-        @self._get_request('RBE', startDate=start_date, endDate=end_date)
+    def radiation_belt_enhancment(self, start_date=datetime.date.today()- datetime.timedelta(30), end_date=datetime.date.today()):
+        @self._get_request('RBE',
+                           startDate=start_date, endDate=end_date)
         def inner(response):
             return response
 
@@ -106,7 +108,8 @@ class DONKIProvider(ApiProvider):
 
     def hight_speed_stream(self, start_date=datetime.date.today() - datetime.timedelta(30),
                              end_date=datetime.date.today()):
-        @self._get_request('HSS', startDate=start_date, endDate=end_date)
+        @self._get_request('HSS',
+                           startDate=start_date, endDate=end_date)
         def inner(response):
             return response
 
@@ -114,14 +117,16 @@ class DONKIProvider(ApiProvider):
 
     def wsa_enlil_simulation(self, start_date=datetime.date.today() - datetime.timedelta(30),
                              end_date=datetime.date.today()):
-        @self._get_request('EnlilSimulations', startDate=start_date, endDate=end_date)
+        @self._get_request('EnlilSimulations',
+                           startDate=start_date, endDate=end_date)
         def inner(response):
             return response
 
         return inner
 
     def notifications(self, start_date: datetime.date, end_date: datetime.date, type="all"):
-        @self._get_request('notifications', startDate=start_date, endDate=end_date, type=type)
+        @self._get_request('notifications',
+                           startDate=start_date, endDate=end_date, type=type)
         def inner(response):
             return response
 

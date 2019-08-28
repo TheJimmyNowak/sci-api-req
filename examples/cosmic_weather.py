@@ -6,6 +6,8 @@ from sci_api_req.providers.NASA.neows_provider import NeoWsProvider
 
 
 # Set NASA API key
+from sci_api_req.providers.openaq_provider import OpenaqProvider
+
 config.set_api_keys(('NASA', 'CeJOODBdDRDhAbcsB4H89tSIJFkUD0hCkQu760nf'))
 
 # Initialize providers

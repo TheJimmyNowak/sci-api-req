@@ -13,10 +13,7 @@ class NeoWsProvider(ApiProvider):
     def __init__(self):
         super(ApiProvider).__init__()
         self._api_url = "https://api.nasa.gov/neo/rest/v1/"
-
-    @property
-    def api_key(self) -> str:
-        return config.get_api_keys('NASA')
+        self._api_key = config.get_api_keys('NASA')
 
     """Retrieve a list of Asteroids based on their closest approach date to Earth."""
     def feed(self, start_date: datetime.date, end_date: datetime.date, detailed=True) -> dict:
@@ -31,7 +28,8 @@ class NeoWsProvider(ApiProvider):
 
     """Find Near Earth Objects for today"""
     def feed(self, detailed=True) -> dict:
-        @self._get_request('feed/today', detailed=detailed)
+        @self._get_request('feed/today',
+                           detailed=detailed)
         def inner(response):
             return response
 
@@ -54,7 +52,8 @@ class NeoWsProvider(ApiProvider):
 
     """Retrieve Sentry (Impact Risk) Near Earth Objects"""
     def sentry(self, is_active=True, page=0, size=50) -> dict:
-        @self._get_request('neo/sentry', is_active=str(is_active), page=str(page), size=str(size))
+        @self._get_request('neo/sentry',
+                           is_active=str(is_active), page=str(page), size=str(size))
         def inner(response):
             return response
 
