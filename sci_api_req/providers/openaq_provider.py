@@ -2,7 +2,12 @@ from sci_api_req.providers.api_provider import ApiProvider
 
 
 class OpenaqProvider(ApiProvider):
+    """
+    Don't require key. Enjoy
+    See link for docs https://docs.openaq.org/
+    """
     def __init__(self):
+        super(ApiProvider).__init__()
         self._api_url = "https://api.openaq.org/v1/"
 
     def cities(self, **kwargs):

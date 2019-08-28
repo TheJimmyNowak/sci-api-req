@@ -32,5 +32,3 @@ print("It's near earth asteroid id's:")
 for i in neo_feed['near_earth_objects'][str(date.today())]:
     print(i['id'])
     print("Does it hazardous?: {}\n".format(i['is_potentially_hazardous_asteroid']))
-
-OpenaqProvider().cities()
