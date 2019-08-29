@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="sci-api-req",
-    version="0.1.1",
+    version="0.2.0",
     author="miki164",
     author_email="miki3867@gmail.com",
     description="Provider for scientific APIs",
