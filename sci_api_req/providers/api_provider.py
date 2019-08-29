@@ -11,8 +11,8 @@ class ApiProvider(object):
         self._api_url = None
         self._api_key = None
 
-    """Make GET request to api and inject response to response kwarg"""
     def _get_request(self, endpoint: str, **parameters):
+        """Make GET request to api and inject response to response kwarg"""
         def inner_function(f):
             @wraps(f)
             def wrapper():
