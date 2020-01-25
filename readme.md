@@ -33,3 +33,4 @@ List of all APIs you can now use with the library:
 * NeoWs (Near Earth Object Web Service)
 * Astronomy Picture of the Day
 * Space Weather Database Of Notifications, Knowledge, Information (DONKI)
+* OpenAQ
